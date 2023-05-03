@@ -1,10 +1,28 @@
 from instuki import Instuki
+import pandas as pd
+from time import sleep
 
-SESSION_ID = '146327203%3AM1Y47ijLIEg7GC%3A28%3AAYdHD8QGl38gKr_Z-yjcXSQ6yE_Om8KrioF_8zsJrw'
-USERNAME = '_shimumu'
+SESSION_ID = 'xxx'
 
 if __name__ == '__main__':
-  instuki = Instuki(SESSION_ID, USERNAME)
-  df = instuki.format_to_dataframe()
-  print(df.head())
-  df.to_csv('ig_data.csv', index=False)
+
+  dfs = []
+  usernames = ['_shimumu', '_funeralha']
+
+  for username in usernames:
+    print(f"Getting {username}'s data...")
+
+    instuki = Instuki(SESSION_ID, username)
+    df = instuki.format_to_dataframe()
+    df['account'] = username
+
+    print(df.head())
+    
+    dfs.append(df)
+
+    # Better safe than sorry?
+    sleep(10)
+
+
+  df_final = pd.concat(dfs)
+  df_final.to_csv('ig_data.csv', index=False)
