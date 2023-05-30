@@ -7,6 +7,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import requests
 import json
+import sys
 from utils import timestamp_to_datetime
 
 
@@ -50,8 +51,7 @@ class InstukiScraper():
       return driver
     # If not, it may be an user not found or error 401
     except NoSuchElementException:
-      # TODO: Standardize exception handling
-      raise SystemExit('User not found / Invalid session ID')
+      sys.exit('User not found / Invalid session ID')
 
   def scrape_profile(self) -> str:
     """
@@ -145,8 +145,7 @@ class Instuki(InstukiScraper):
       response = requests.get(post_permalink, cookies=cookies)
       response.raise_for_status()
     except requests.exceptions.HTTPError as error:
-      # TODO: Standardize exception handling
-      raise SystemExit(error)
+      sys.exit(error)
     
     response_json = json.loads(response.text)
 

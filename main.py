@@ -1,18 +1,13 @@
 from instuki import Instuki
 import pandas as pd
 import os
+import sys
 from time import sleep
 import argparse
 
 if __name__ == '__main__':
 
-  # Getting session id from the enviromental variables
-  if 'SESSION_ID' in os.environ:
-    SESSION_ID = os.getenv('SESSION_ID')
-  else:
-    SystemExit('No SESSION_ID found in enviromental variables')
-
-  # From the keyword argument, create a list of usernames to be scraped
+ # From the keyword argument, create a list of usernames to be scraped
   parser = argparse.ArgumentParser()
   parser.add_argument('-u',
                       '--username',
@@ -23,8 +18,14 @@ if __name__ == '__main__':
   try:
     usernames = [x for x in args.username.split(',')]
   except AttributeError:
-    raise SystemExit('Correct usage "python3 main.py -u {USERNAME_LIST}"')
-  
+    sys.exit('Correct usage "python3 main.py -u {USERNAME_LIST}"')
+
+  # Getting session id from the environmental variables
+  if 'SESSION_ID' in os.environ: 
+    SESSION_ID = os.getenv('SESSION_ID')
+  else:
+    sys.exit('No SESSION_ID found in environmental variables.\nUse: export SESSION_ID={session_id}')
+
   # Run the process for each username inputted
   dfs = []
   
