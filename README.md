@@ -1,10 +1,10 @@
 # instuki: yet another instagram scraper
 extraction of public engagement data from Instagram profiles.
 
-## use cases
+## :robot: use cases
 basic diagnostic of the latest posts of an Instagram profile, such as frequeny of posting and overall engagement.
 
-## usage
+## :steam_locomotive: usage
 
 ### getting sessionid
 on a logged in Instagram session, open the developer tools and click on the *application* tab:
@@ -37,5 +37,5 @@ $ python3 main.py -u "{username_1, username_2}"
 
 
 
-## technology
+## :jack_o_lantern: technology
 python.
