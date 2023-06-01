@@ -1,8 +1,8 @@
-# instuki: yet another instagram scraper
+# instuki ~ scrape Instagram for benchmarking
 extraction of public engagement data from Instagram profiles.
 
 ## :robot: use cases
-basic diagnostic of the latest posts of an Instagram profile, such as frequeny of posting and overall engagement.
+basic diagnostic of the latest posts of one or more Instagram profiles, such as frequeny of posting and overall engagement.
 
 ## :steam_locomotive: usage
 
@@ -10,7 +10,7 @@ basic diagnostic of the latest posts of an Instagram profile, such as frequeny o
 on a logged in Instagram session, open the developer tools and click on the *application* tab:
 
 
-![Captura de tela de 2023-05-25 16-38-34](https://github.com/yuki-shi/instuki/assets/88805836/2e2f32fa-d10b-4b60-ae2f-96075dccbcfb)
+![](https://github.com/yuki-shi/instuki/blob/main/assets/session_id.png)
 
 
 
@@ -18,7 +18,7 @@ on a logged in Instagram session, open the developer tools and click on the *app
 then select the URL under *cookies* and copy the string on *sessionid*
 
 
-![Captura de tela de 2023-05-25 16-38-44](https://github.com/yuki-shi/instuki/assets/88805836/664254de-0428-48f4-baaa-fb57bb780919)
+![](https://github.com/yuki-shi/instuki/blob/main/assets/session_id2.png)
 
 ### setup
 create an environmental variable with the copied *sessionid*:
@@ -35,7 +35,7 @@ $ python3 main.py -u "{username_1, username_2}"
 ```
 
 
-
+## :honeybee: troubleshooting
 
 ## :jack_o_lantern: technology
 python.
