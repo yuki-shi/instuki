@@ -2,6 +2,7 @@ from typing import List, Dict
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import WebDriverException
 from time import sleep
 from bs4 import BeautifulSoup
 import pandas as pd
@@ -39,7 +40,10 @@ class InstukiScraper():
      """
     options = webdriver.ChromeOptions()
     options.add_argument('--headless')
+    user_agent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.50 Safari/537.36'    
+    options.add_argument(f'user-agent={user_agent}')
     driver = webdriver.Chrome(options=options)
+
     driver.get(f'https://www.instagram.com/{self.username}')
     driver.add_cookie({'name': 'sessionid', 'value': self.session_id})
     driver.get(f'https://www.instagram.com/{self.username}')
@@ -48,10 +52,14 @@ class InstukiScraper():
     try:
       sleep(10)
       driver.find_element(By.CSS_SELECTOR, 'div._ac7v:nth-child(1) > div:nth-child(1) > a:nth-child(1)')
+      print('Driver ok!')
       return driver
     # If not, it may be an user not found or error 401
     except NoSuchElementException:
       sys.exit('User not found / Invalid session ID')
+    # They webdriver may not be found correctly
+    except WebDriverException:
+      sys.exit("DevToolsaActivePort file doesn't exist with chromium browser and Selenium Python")
 
   def scrape_profile(self) -> str:
     """
